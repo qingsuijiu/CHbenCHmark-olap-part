@@ -32,5 +32,6 @@ do
 
     latency=${timediff $start $end}
     echo "${latency}" >> res_${thread_num}.log
+    echo "query ${loop} done, latency: ${latency}"
 done
 
