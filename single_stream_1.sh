@@ -7,7 +7,7 @@ function arrayRandomSort()
 	# 原数组长度
 	oriLen=${#oldArray[*]}
 	for i in $(seq 0 ${oriLen-1})
-	do   
+	do
 	    # 每次随机取出一个值后的长度是否为0
 		len=${#oldArray[*]}
 		if [ ${len} -eq 0 ];then
@@ -60,9 +60,10 @@ do
     mysql -h10.224.158.165 -P3311 -uroot -p123456 tpcc_100 -t < sqls/${loop}.sql > logs/${loop}.log
     # sleep 2
     end=$(date +%s.%N)
+    mysql -h10.224.158.165 -P3311 -uroot -p123456 tpcc_100 -t < explain_sqls/${loop}.sql >> logs/${loop}.log
 
-    latency=${timediff $start $end}
+    latency=`timediff $start $end`
+    echo "${latency}"
     echo "${loop}" >> res_${thread_num}.log
-    echo "${lantency}" >> res_${thread_num}.log
+    echo "${latency}" >> res_${thread_num}.log
 done
-

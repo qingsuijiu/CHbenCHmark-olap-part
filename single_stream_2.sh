@@ -29,6 +29,7 @@ do
     mysql -h10.224.158.165 -P3311 -uroot -p123456 tpcc_100 -t < sqls/${loop}.sql > logs/${loop}.log
     # sleep 2
     end=$(date +%s.%N)
+    mysql -h10.224.158.165 -P3311 -uroot -p123456 tpcc_100 -t < explain_sqls/${loop}.sql >> logs/${loop}.log
 
     latency=${timediff $start $end}
     echo "${latency}" >> res_${thread_num}.log
